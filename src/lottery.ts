@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as core from '@actions/core'
 import {Octokit} from '@octokit/rest'
 import {Config} from './config'
@@ -42,7 +43,7 @@ class Lottery {
       if (ready) {
         const reviewers = await this.selectReviewers()
         reviewers.length > 0 && (await this.setReviewers(reviewers))
-        // eslint-disable-next-line no-console
+
         console.log(reviewers)
         core.setOutput('reviewers', reviewers)
       }
@@ -150,10 +151,14 @@ class Lottery {
   async getPR(): Promise<Pull | undefined> {
     if (this.pr) return this.pr
 
+    console.log('PR', this.pr)
     try {
       const {data} = await this.octokit.pulls.list({
         ...this.getOwnerAndRepo()
       })
+
+      console.log('PR data', data)
+      console.log('PR ref', this.env.ref)
 
       this.pr = data.find(({head: {ref}}) => ref === this.env.ref)
 
