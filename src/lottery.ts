@@ -98,6 +98,8 @@ class Lottery {
             )
           )
         }
+
+        return selected
       }
     } catch (error: any) {
       core.error(error)
