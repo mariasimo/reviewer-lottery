@@ -4,6 +4,8 @@ import {Octokit} from '@octokit/rest'
 import {getConfig} from './config'
 
 async function run(): Promise<void> {
+  core.setOutput('test', 'here')
+
   try {
     if (!process.env.GITHUB_REF) throw new Error('missing GITHUB_REF')
     if (!process.env.GITHUB_REPOSITORY)
@@ -11,8 +13,6 @@ async function run(): Promise<void> {
     //comes from {{secrets.GITHUB_TOKEN}}
     const token = core.getInput('repo-token', {required: true})
     const config = getConfig()
-
-    core.setOutput('test', 'here')
 
     await runLottery(new Octokit({auth: token}), config)
   } catch (error: any) {
