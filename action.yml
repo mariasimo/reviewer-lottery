@@ -11,6 +11,9 @@ inputs:
   config:
     description: 'Path to config file'
     default: '.github/reviewer-lottery.yml'
+outputs:
+  reviewers:
+    description: 'Picked reviewers'
 runs:
   using: 'node16'
   main: 'dist/index.js'

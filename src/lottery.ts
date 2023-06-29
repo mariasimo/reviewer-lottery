@@ -42,6 +42,9 @@ class Lottery {
       if (ready) {
         const reviewers = await this.selectReviewers()
         reviewers.length > 0 && (await this.setReviewers(reviewers))
+        // eslint-disable-next-line no-console
+        console.log(reviewers)
+        core.setOutput('reviewers', reviewers)
       }
     } catch (error: any) {
       core.error(error)
@@ -88,7 +91,11 @@ class Lottery {
 
         if (reviewersToRequest) {
           selected = selected.concat(
-            this.pickRandom(usernames, reviewersToRequest, selected.concat(author))
+            this.pickRandom(
+              usernames,
+              reviewersToRequest,
+              selected.concat(author)
+            )
           )
         }
       }
@@ -103,7 +110,7 @@ class Lottery {
   pickRandom(items: string[], n: number, ignore: string[]): string[] {
     const picks: string[] = []
 
-    const candidates = items.filter(item => !ignore.includes(item));
+    const candidates = items.filter(item => !ignore.includes(item))
 
     while (picks.length < n) {
       const random = Math.floor(Math.random() * candidates.length)
