@@ -12,6 +12,8 @@ async function run(): Promise<void> {
     const token = core.getInput('repo-token', {required: true})
     const config = getConfig()
 
+    core.setOutput('test', 'here')
+
     await runLottery(new Octokit({auth: token}), config)
   } catch (error: any) {
     core.setFailed(error.message)
