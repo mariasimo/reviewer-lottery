@@ -45,6 +45,7 @@ class Lottery {
 
         console.log({reviewers})
         core.setOutput('reviewers', reviewers)
+        core.setOutput('test', 'something random')
       }
     } catch (error: any) {
       core.error(error)
