@@ -38,6 +38,7 @@ class Lottery {
 
   async run(): Promise<void> {
     try {
+      console.log('11111')
       const ready = await this.isReadyToReview()
       if (ready) {
         const reviewers = await this.selectReviewers()
