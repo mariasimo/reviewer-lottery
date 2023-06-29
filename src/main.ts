@@ -4,7 +4,8 @@ import {Octokit} from '@octokit/rest'
 import {getConfig} from './config'
 
 async function run(): Promise<void> {
-  core.setOutput('test', 'here')
+  core.setOutput('test', 'test here')
+  console.log('here')
 
   try {
     if (!process.env.GITHUB_REF) throw new Error('missing GITHUB_REF')
