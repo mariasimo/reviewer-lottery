@@ -38,15 +38,12 @@ class Lottery {
 
   async run(): Promise<void> {
     try {
-      console.log('11111')
       const ready = await this.isReadyToReview()
       if (ready) {
         const reviewers = await this.selectReviewers()
         reviewers.length > 0 && (await this.setReviewers(reviewers))
 
-        console.log({reviewers})
         core.setOutput('reviewers', reviewers)
-        core.setOutput('test', 'something random')
       }
     } catch (error: any) {
       core.error(error)

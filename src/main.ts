@@ -4,14 +4,13 @@ import {Octokit} from '@octokit/rest'
 import {getConfig} from './config'
 
 async function run(): Promise<void> {
-  core.setOutput('test', 'test here')
-  console.log('here')
-
   try {
+    const time = new Date().toTimeString()
+    core.setOutput('time', time)
+
     if (!process.env.GITHUB_REF) throw new Error('missing GITHUB_REF')
     if (!process.env.GITHUB_REPOSITORY)
       throw new Error('missing GITHUB_REPOSITORY')
-    //comes from {{secrets.GITHUB_TOKEN}}
     const token = core.getInput('repo-token', {required: true})
     const config = getConfig()
 
