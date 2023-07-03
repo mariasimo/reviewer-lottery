@@ -43,7 +43,9 @@ class Lottery {
         const reviewers = await this.selectReviewers()
         reviewers.length > 0 && (await this.setReviewers(reviewers))
 
-        core.setOutput('reviewers', reviewers)
+        // eslint-disable-next-line no-console
+        console.log('reviewers', reviewers)
+        core.setOutput('list', reviewers)
       }
     } catch (error: any) {
       core.error(error)
